@@ -10,10 +10,10 @@ import java.io.InputStreamReader;
 import android.content.Context;
 
 public class FileHelper {
-	private final String FILENAME = "budoly-cache.json";
+	private final static String FILENAME = "budoly-cache.json";
 	
 	
-	protected void writeToFile(String value, Context context) throws CacheException {
+	protected static void writeToFile(String value, Context context) throws CacheException {
 		FileOutputStream fos;
 		try {
 			fos = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
@@ -26,7 +26,7 @@ public class FileHelper {
 		}
 	}
 	
-	protected String readFromFile(Context context) throws CacheException {
+	protected static String readFromFile(Context context) throws CacheException {
 		
 		FileInputStream in;
 		String out;
