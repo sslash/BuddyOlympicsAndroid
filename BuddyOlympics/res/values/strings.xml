@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">Buddy olympics</string>
-    <string name="hello_world">Hello bitches!</string>
+    <string name="connect_to_internet">Connect to the interwebz, u dumb bitch</string>
+    <string name="reg_success">Success! You are lol and awezum.</string>
     <string name="login">Login</string>
     <string name="sign_up">Sign up</string>
     <string name="yolo">Sign the fuck up</string>

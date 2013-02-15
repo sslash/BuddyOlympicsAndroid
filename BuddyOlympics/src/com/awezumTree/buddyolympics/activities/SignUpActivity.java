@@ -2,12 +2,20 @@ package com.awezumTree.buddyolympics.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
 
 import com.awezumTree.buddyolympics.R;
 
 public class SignUpActivity extends Activity {
+	
+	public final static String USERNAME = "1";
+	public final static String EMAIL = "2";
+	public final static String PASSWORD = "3";
+	public final static String BUNDLE ="__BUNDLE__";
 
 	@SuppressLint("NewApi")
 	@Override
@@ -21,6 +29,26 @@ public class SignUpActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_sign_up, menu);
 		return true;
+	}
+	
+	 public void done(View view) {
+	    	Intent toReturn = this.getIntent();
+	    	toReturn.putExtra(BUNDLE, parseInputAndGetRunnerData());
+	    	this.setResult(RESULT_OK, toReturn);
+	    	this.finish();
+	    }
+
+	private Bundle parseInputAndGetRunnerData() {
+		Bundle data = new Bundle();
+		EditText username = (EditText) findViewById(R.id.usernameInput);
+    	EditText email = (EditText) findViewById(R.id.emailInput);
+    	EditText password = (EditText) findViewById(R.id.passwordInput);
+    	
+    	data.putString(USERNAME, username.getText().toString());
+    	data.putString(EMAIL, email.getText().toString());
+    	data.putString(PASSWORD, password.getText().toString());
+    	
+		return data;
 	}
 
 }
