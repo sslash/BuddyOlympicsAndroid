@@ -83,6 +83,7 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 		if ( !"ok".equals(res) ){
 			Toast.makeText(getApplicationContext(),
 					R.string.reg_success, Toast.LENGTH_LONG).show();
+			
 		} else {
 			Log.d("LOLCAT", "NGR " + res);
 		}
