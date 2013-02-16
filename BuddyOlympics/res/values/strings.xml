@@ -12,6 +12,7 @@
     <string name="title_activity_sign_up">SignUp</string>
     <string name="hello_world">Hello world!</string>
     <string name="newRun">Start New Run</string>
+    <string name="addFriend">Add a Friend</string>
     <string name="title_activity_home_page">HomePageActivity</string>
     <string name="title_activity_authenticate">AuthenticatActivity</string>
     <string name="title_activity_run">RunActivity</string>
@@ -20,8 +21,7 @@
     <string name="setTime">Set Time</string>
     <string name="addRunners">Add Runners</string>
     <string name="doneCreateRun">Done!</string>
-    
-    
-    
+    <string name="title_activity_add_friend">AddFriendActivity</string>
+
 
 </resources>
