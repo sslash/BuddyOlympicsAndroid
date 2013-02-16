@@ -11,6 +11,7 @@ import com.awezumTree.buddyolympics.domain.User;
 import com.awezumTree.buddyolympics.domain.UserFactory;
 
 public class UserCacheRegistry {
+	public static final String USER_CACHE_FILE = "user_cache_file";
 	
 	private CacheFileFetcher fetcher = null;
 	private static UserCacheRegistry instance = null;
