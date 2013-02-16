@@ -12,12 +12,12 @@ import android.content.Context;
 public class FileHelper {
 	private final String filename;
 	
-	public FileHelper(String filename) {
+	protected FileHelper(String filename) {
 		this.filename = filename;
 	}
 	
 	
-	public void writeToFile(String value, Context context) throws CacheException {
+	protected void writeToFile(String value, Context context) throws CacheException {
 		FileOutputStream fos;
 		try {
 			fos = context.openFileOutput(filename, Context.MODE_PRIVATE);
@@ -32,7 +32,7 @@ public class FileHelper {
 		}
 	}
 	
-	public String readFromFile(Context context) throws CacheException {
+	protected String readFromFile(Context context) throws CacheException {
 		
 		FileInputStream in;
 		String out;

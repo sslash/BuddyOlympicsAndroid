@@ -1,7 +1,5 @@
 package com.awezumTree.buddyolympics.cache;
 
-import org.json.JSONObject;
-
 import android.test.AndroidTestCase;
 
 public class CacheTest extends AndroidTestCase {
