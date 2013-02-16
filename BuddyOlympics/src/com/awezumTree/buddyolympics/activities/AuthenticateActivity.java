@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.awezumTree.buddyolympics.R;
-import com.awezumTree.buddyolympics.domain.RunnerFactory;
+import com.awezumTree.buddyolympics.domain.UserFactory;
 import com.awezumTree.buddyolympics.restClient.AsyncTaskCallback;
 import com.awezumTree.buddyolympics.restClient.RestClient;
 

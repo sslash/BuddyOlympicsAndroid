@@ -16,7 +16,7 @@ import com.awezumTree.buddyolympics.activities.HomePageActivity;
 import com.awezumTree.buddyolympics.activities.RunActivity;
 import com.awezumTree.buddyolympics.activities.SignUpActivity;
 import com.awezumTree.buddyolympics.domain.Runner;
-import com.awezumTree.buddyolympics.domain.RunnerFactory;
+import com.awezumTree.buddyolympics.domain.UserFactory;
 import com.awezumTree.buddyolympics.restClient.AsyncTaskCallback;
 import com.awezumTree.buddyolympics.restClient.RestClient;
 
@@ -81,7 +81,7 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 		Bundle authData = (Bundle) extras.get(SignUpActivity.BUNDLE);
 		if ( authData != null ) {
 			Log.d("LOLCAT", "auth success");
-			this.user = RunnerFactory.createRunner(authData);
+			this.user = UserFactory.createRunner(authData);
 			Log.d("LOLCAT", "user: " + user.toString());
 			doLogIn();			
 		} else {
@@ -102,7 +102,7 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 	private void postRunnerToServer(Bundle inputData) {
 		RestClient post = new RestClient(this);
 		Bundle runnerData = (Bundle) inputData.get(SignUpActivity.BUNDLE); 
-		this.user = RunnerFactory.createRunner(runnerData);
+		this.user = UserFactory.createRunner(runnerData);
 		post.setJsonBody(runnerData);			
 		post.execute("http://192.168.13.102:8080/runners");			
 	}
