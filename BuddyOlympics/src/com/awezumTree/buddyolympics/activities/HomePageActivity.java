@@ -38,6 +38,11 @@ public class HomePageActivity extends Activity {
 	public void newRun(View view) {
 		Intent intent = new Intent(this, RunActivity.class);
 	}
+	
+	public void addFriends(View view) {
+		Intent intent = new Intent(this, AddFriendActivity.class);
+		startActivity(intent);
+	}
 
 	
 
