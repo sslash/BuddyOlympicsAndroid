@@ -40,7 +40,7 @@ public class UserCacheRegistry {
 			configuration.putString(User.USERNAME, cachedData.getString(User.USERNAME));
 			configuration.putString(User.EMAIL, cachedData.getString(User.EMAIL));
 			configuration.putString(User.PASSWORD, cachedData.getString(User.PASSWORD));
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			Log.e("UserCacheError", "json to user: " + e.getMessage());
 		}
 		return UserFactory.createUser(configuration);
@@ -52,7 +52,7 @@ public class UserCacheRegistry {
 			json.put(User.USERNAME, user.getUsername());
 			json.put(User.EMAIL, user.getEmail());
 			json.put(User.PASSWORD, user.getPassword());
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			Log.e("UserCacheError", "user to json: "+e.getMessage());
 		}
 		return json;
