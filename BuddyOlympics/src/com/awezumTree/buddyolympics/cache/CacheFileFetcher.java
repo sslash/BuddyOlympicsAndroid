@@ -10,18 +10,18 @@ public class CacheFileFetcher {
 	private FileHelper fh;
 	private JSONObject data = null;
 	
-	public CacheFileFetcher(String cachename) {
+	protected CacheFileFetcher(String cachename) {
 		fh = new FileHelper(cachename);
 	}
 	
-	public JSONObject getCachedData(Context context) {
+	protected JSONObject getCachedData(Context context) {
 		if (data == null) {
 			data = getPersistedCacheData(context);
 		}
 		return data;
 	}
 	
-	public void setCacheData(JSONObject value, Context context) {
+	protected void setCacheData(JSONObject value, Context context) {
 		data = value;
 		persistCacheData(context);
 	}
