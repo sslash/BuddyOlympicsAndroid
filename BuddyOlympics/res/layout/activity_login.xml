@@ -31,11 +31,11 @@
         android:text="RUN BIETCH"
         android:onClick="runTest" />
     
-        <Button
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ADD LOVER"
-        android:onClick="addFriendTest" />
+        android:text="GPS ACID ROAD TEST"
+        android:onClick="actuallyRunning" />
     
 
 </LinearLayout>

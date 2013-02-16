@@ -47,7 +47,11 @@
         <activity
             android:name="com.awezumTree.buddyolympics.activities.AddFriendActivity"
             android:label="@string/title_activity_add_friend" >
-        </activity>        
+        </activity>
+        <activity
+            android:name="com.awezumTree.buddyolympics.activities.ActuallyRunningActivity"
+            android:label="@string/title_activity_actually_running" >
+        </activity>         
     </application>
 
 </manifest>

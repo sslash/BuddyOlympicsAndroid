@@ -22,6 +22,8 @@
     <string name="addRunners">Add Runners</string>
     <string name="doneCreateRun">Done!</string>
     <string name="title_activity_add_friend">AddFriendActivity</string>
-
-
+    <string name="longitude">The Smoon</string>
+    <string name="latitude">Left of</string>
+    <string name="title_activity_actually_running">title_activity_actually_running</string>
+    
 </resources>
