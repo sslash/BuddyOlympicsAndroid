@@ -89,7 +89,6 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 		if ( authData != null ) {
 			Log.d("LOLCAT", "auth success");
 			this.user = UserFactory.createUser(authData);
-			UserCacheRegistry.set(user, this);
 			Log.d("LOLCAT", "user: " + user.toString());
 			doLogIn();			
 		} else {

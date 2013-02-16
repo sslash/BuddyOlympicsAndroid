@@ -1,5 +1,8 @@
 package com.awezumTree.buddyolympics.activities;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.awezumTree.buddyolympics.R;
+import com.awezumTree.buddyolympics.cache.UserCacheRegistry;
 import com.awezumTree.buddyolympics.domain.User;
 import com.awezumTree.buddyolympics.restClient.AsyncTaskCallback;
 import com.awezumTree.buddyolympics.restClient.RestPostClient;
@@ -71,6 +75,13 @@ public class AuthenticateActivity extends Activity implements AsyncTaskCallback 
 					Toast.LENGTH_LONG).show();
 			toReturn.putExtra(SignUpActivity.BUNDLE, this.authData);
 		}
+		try {
+			JSONObject usr = new JSONObject(res);
+			UserCacheRegistry.set(usr, this);
+		} catch (JSONException e) {
+			Log.e("PERSISTANCE", "Could not persist shit - " + e.getMessage());
+		}
+		
 		this.setResult(RESULT_OK, toReturn);
 		this.finish();
 	}

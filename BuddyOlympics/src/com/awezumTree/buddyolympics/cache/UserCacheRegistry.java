@@ -34,6 +34,14 @@ public class UserCacheRegistry {
 		instance.fetcher.setCacheData(userToJson(user), context);
 	}
 	
+	public static void set(JSONObject user, Context context) {
+		if (instance == null) {
+			instance = new UserCacheRegistry(UserCacheRegistry.USER_CACHE_FILE);
+		}
+		instance.fetcher.setCacheData(user, context);
+	}
+	
+	
 	public static User jsonToUser(JSONObject cachedData) {
 		Bundle configuration = new Bundle();
 		try {

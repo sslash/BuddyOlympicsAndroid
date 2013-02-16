@@ -101,7 +101,6 @@ public class ActuallyRunningActivity extends Activity implements AsyncTaskCallba
 			@Override
 			public void run() {
 				Location loc = gps.getLocation();
-				changeCoordinatesOnScreen(loc.getLatitude(), loc.getLongitude());
 				locations.add(loc);
 				if (running) {
 					runLocationPollingLoop();
