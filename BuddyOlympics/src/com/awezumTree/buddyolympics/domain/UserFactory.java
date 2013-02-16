@@ -1,30 +1,34 @@
 package com.awezumTree.buddyolympics.domain;
 
-import com.awezumTree.buddyolympics.activities.SignUpActivity;
+import java.util.TreeSet;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
-public class RunnerFactory {
+import com.awezumTree.buddyolympics.activities.SignUpActivity;
+
+public class UserFactory {
 	
 	@SuppressLint("NewApi")
-	public static Runner createRunner(Bundle runnerData) {
-		Runner runner = new Runner();
+	public static User createRunner(Bundle runnerData) {
+		User user = new User();
 		String username = runnerData.getString(SignUpActivity.USERNAME);
 		String email = runnerData.getString(SignUpActivity.EMAIL);
 		String password = runnerData.getString(SignUpActivity.PASSWORD);
 		
 		if ( username != null && !username.isEmpty() ) 
-			runner.setUsername(username);
+			user.setUsername(username);
 		
 		if (email != null && !email.isEmpty() ) {
-			runner.setEmail(email);
+			user.setEmail(email);
 		}
 		
 		if ( password != null && !password.isEmpty()) {
-			runner.setPassword(password);
-		}	
+			user.setPassword(password);
+		}
 		
-		return runner;
+		user.setFriendlist(new TreeSet<Friend>());
+		
+		return user;
 	}
 }
