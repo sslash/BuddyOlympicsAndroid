@@ -20,9 +20,9 @@ import android.widget.SimpleAdapter;
 import android.widget.ViewFlipper;
 
 import com.awezumTree.buddyolympics.R;
-import com.awezumTree.buddyolympics.domain.UserFactory;
 import com.awezumTree.buddyolympics.restClient.AsyncTaskCallback;
-import com.awezumTree.buddyolympics.restClient.RestClient;
+import com.awezumTree.buddyolympics.restClient.HTTPRestTemplate;
+import com.awezumTree.buddyolympics.restClient.RestPostClient;
 
 public class RunActivity extends Activity implements AsyncTaskCallback{
 
@@ -76,8 +76,8 @@ public class RunActivity extends Activity implements AsyncTaskCallback{
 	}
 	
 	public void fillRunnersList() {
-		RestClient post = new RestClient(this);
-		post.execute("http://192.168.13.102:8080/runners");		
+		HTTPRestTemplate post = new RestPostClient(this,"http://192.168.13.102:8080/runners");
+		post.execute();		
 		String[] sports = {"lol", "kok", "sap", "dap", "fapp", "crap"};
 		this.runnersAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_multiple_choice, sports);

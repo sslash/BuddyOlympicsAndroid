@@ -19,7 +19,7 @@ import com.awezumTree.buddyolympics.activities.SignUpActivity;
 import com.awezumTree.buddyolympics.domain.Runner;
 import com.awezumTree.buddyolympics.domain.UserFactory;
 import com.awezumTree.buddyolympics.restClient.AsyncTaskCallback;
-import com.awezumTree.buddyolympics.restClient.RestClient;
+import com.awezumTree.buddyolympics.restClient.RestPostClient;
 
 public class LoginActivity extends Activity implements AsyncTaskCallback{
 
@@ -106,11 +106,11 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 	}
 
 	private void postRunnerToServer(Bundle inputData) {
-		RestClient post = new RestClient(this);
+		RestPostClient post = new RestPostClient(this,"http://192.168.13.102:8080/runners" );
 		Bundle runnerData = (Bundle) inputData.get(SignUpActivity.BUNDLE); 
 		this.user = UserFactory.createUser(runnerData);
 		post.setJsonBody(runnerData);			
-		post.execute("http://192.168.13.102:8080/runners");			
+		post.execute();			
 	}
 	
 	
