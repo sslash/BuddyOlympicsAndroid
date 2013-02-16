@@ -7,10 +7,13 @@
     <string name="login">Login</string>
     <string name="sign_up">Sign up</string>
     <string name="yolo">Sign the fuck up</string>
+    <string name="pick_time">Pick a time</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_sign_up">SignUp</string>
     <string name="hello_world">Hello world!</string>
+    <string name="newRun">Start New Run</string>
     <string name="title_activity_home_page">HomePageActivity</string>
     <string name="title_activity_authenticate">AuthenticatActivity</string>
+    <string name="title_activity_run">RunActivity</string>
 
 </resources>

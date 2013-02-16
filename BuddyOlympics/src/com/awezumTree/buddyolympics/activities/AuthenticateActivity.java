@@ -42,16 +42,18 @@ public class AuthenticateActivity extends Activity implements AsyncTaskCallback 
 	}
 
 	private boolean doAuthenticate(String u, String p) {
-		if (u == null || u.isEmpty() || p == null || p.isEmpty())
+		if (u == null || u.isEmpty() || p == null || p.isEmpty()){
+			//TODO: Give r-tard msg to user!
 			return false;
+		}
 
-		RestClient post = new RestClient(this);
 		this.authData = new Bundle();
 		this.authData.putString(SignUpActivity.USERNAME, u);
 		this.authData.putString(SignUpActivity.PASSWORD, p);
+		RestClient post = new RestClient(this);
 		Log.d("LOLCAT", "u + p: " + u + ",'" + p+"'");
 		post.setJsonBody(this.authData);
-		post.execute("http://192.168.13.101:8080/login");
+		post.execute("http://192.168.13.102:8080/login");
 		return true;
 	}
 

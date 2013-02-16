@@ -7,11 +7,11 @@
     android:orientation="vertical"
     tools:context=".AuthenticatActivity" >
 
-    <ImageView
-        android:id="@+id/imageView1"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/label" />
+        android:text="@string/login"
+        android:textSize="40sp" />
 
     <EditText
         android:id="@+id/usernameAuthInput"
@@ -27,8 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword"
-        android:text="Password" />
+        android:hint="password"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/button1"

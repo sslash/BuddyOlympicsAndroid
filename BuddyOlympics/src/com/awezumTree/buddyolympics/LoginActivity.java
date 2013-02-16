@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.awezumTree.buddyolympics.activities.AuthenticateActivity;
 import com.awezumTree.buddyolympics.activities.HomePageActivity;
+import com.awezumTree.buddyolympics.activities.RunActivity;
 import com.awezumTree.buddyolympics.activities.SignUpActivity;
 import com.awezumTree.buddyolympics.domain.Runner;
 import com.awezumTree.buddyolympics.domain.RunnerFactory;
@@ -50,6 +51,12 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 		Intent intent = new Intent(this, SignUpActivity.class);
 		startActivityForResult(intent, SIGN_UP_ACTIVITY);
 	}
+	
+	public void runTest(View view) {
+		Intent intent = new Intent(this, RunActivity.class);
+		startActivity(intent);
+	}
+	
 
 
 	public void login(View view) {
@@ -97,7 +104,7 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 		Bundle runnerData = (Bundle) inputData.get(SignUpActivity.BUNDLE); 
 		this.user = RunnerFactory.createRunner(runnerData);
 		post.setJsonBody(runnerData);			
-		post.execute("http://192.168.13.101:8080/runners");			
+		post.execute("http://192.168.13.102:8080/runners");			
 	}
 	
 	

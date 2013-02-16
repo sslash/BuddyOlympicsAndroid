@@ -14,9 +14,10 @@
         android:src="@drawable/label" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/newRunTbn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="newRun"
         android:text="New Run" />
 
     <Button

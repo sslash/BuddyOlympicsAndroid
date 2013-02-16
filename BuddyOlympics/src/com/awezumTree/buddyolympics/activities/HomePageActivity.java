@@ -6,22 +6,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 
 import com.awezumTree.buddyolympics.R;
 import com.awezumTree.buddyolympics.domain.Runner;
 
 public class HomePageActivity extends Activity {
 
+
+
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_page);
-		
-		 // Get the message from the intent
-	    Intent intent = getIntent();
-	    Runner user = (Runner) intent.getSerializableExtra("user");
-	    Log.d("LOLCAT", user.toString());
+
+
+		// Get the message from the intent
+		Intent intent = getIntent();
+		Runner user = (Runner) intent.getSerializableExtra("user");
+		Log.d("LOLCAT", user.toString());
 	}
 
 	@Override
@@ -30,5 +34,11 @@ public class HomePageActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_home_page, menu);
 		return true;
 	}
+
+	public void newRun(View view) {
+		Intent intent = new Intent(this, RunActivity.class);
+	}
+
+	
 
 }
