@@ -3,7 +3,7 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center|center_horizontal|center_vertical"
+    android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical"
     tools:context=".activities.RunActivity" >
 
@@ -16,9 +16,9 @@
     <ViewFlipper
         android:id="@+id/view_flipper"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="178dp"
         android:layout_margin="6dip" >
-<!-- 
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -36,22 +36,79 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
- -->
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:gravity="center" >
+            android:gravity="center"
+            android:orientation="vertical" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="KOK MART LOL CAT"
-                android:textColor="#00ff00"
-                android:textSize="14sp"
-                android:textStyle="bold" >
-            </TextView>
+                android:text="@string/pick_run_type"
+                android:textSize="20sp" />
+
+            <ListView
+                android:id="@+id/run_alt_list"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:choiceMode="singleChoice" >
+            </ListView>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/setDistance"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/mtrForLap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="..in meters!" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/setTime"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/mnsForLap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="..in minutes!" >
+            </EditText>
+        </LinearLayout>
+
+        <include layout="@layout/add_runners_list" />
     </ViewFlipper>
+
+    <Button
+        android:id="@+id/nextRunSelect"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="nextPage"
+        android:text="Next"/>
 
     <RadioGroup
         android:id="@+id/radioGroup1"
