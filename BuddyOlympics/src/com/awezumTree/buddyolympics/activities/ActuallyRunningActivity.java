@@ -22,7 +22,7 @@ import com.awezumTree.buddyolympics.restClient.RestPutClient;
 
 public class ActuallyRunningActivity extends Activity implements AsyncTaskCallback {
 	private final int LOCATION_POLLING_TIMEOUT = 5000;
-	private final int SERVER_PUSH_TIMEOUT = 60000;
+	private final int SERVER_PUSH_TIMEOUT = 10000;
 
 	private GPSService gps;
 
@@ -80,7 +80,7 @@ public class ActuallyRunningActivity extends Activity implements AsyncTaskCallba
 				int length = locations.size() - 1;
 				List<Location> subLocations = locations.subList(pushedLocationIndex, length);
 				pushedLocationIndex = length;
-				RestPutClient put = new RestPutClient(cb, "http://192.168.13.102:8080/runs");	
+				RestPutClient put = new RestPutClient(cb, R.string.server_url+"/runs");	
 				try {
 					put.setJsonBody(JSONUtils.buildRunLocationUpdate(subLocations, UserCacheRegistry.get(cb)));
 					put.execute();

@@ -54,7 +54,7 @@ public class AuthenticateActivity extends Activity implements AsyncTaskCallback 
 		this.authData = new Bundle();
 		this.authData.putString(User.USERNAME, u);
 		this.authData.putString(User.PASSWORD, p);
-		RestPostClient post = new RestPostClient(this,"http://192.168.13.102:8080/login");
+		RestPostClient post = new RestPostClient(this,R.string.server_url+"/login");
 		Log.d("LOLCAT", "u + p: " + u + ",'" + p+"'");
 		post.setJsonBody(this.authData);
 		post.execute();

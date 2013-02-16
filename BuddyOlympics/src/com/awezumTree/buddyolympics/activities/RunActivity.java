@@ -86,7 +86,7 @@ public class RunActivity extends Activity implements AsyncTaskCallback {
 
 	public void fillRunnersList() {
 		HTTPRestTemplate get = new RestGetClient(this,
-				"http://192.168.13.102:8080/runners");
+				R.string.server_url+"/runners");
 		get.execute();
 	}
 

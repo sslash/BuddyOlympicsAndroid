@@ -28,5 +28,7 @@
     <string name="new_requests">New Requests</string>
     <string name="new_run_requests">New Run Requests</string>
     <string name="title_activity_show_run_requests">ShowRunRequests</string>
+    
+    <string name="server_url">http://192.168.13.102:8080</string>
 
 </resources>
