@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -22,7 +25,7 @@ import android.widget.ViewFlipper;
 import com.awezumTree.buddyolympics.R;
 import com.awezumTree.buddyolympics.restClient.AsyncTaskCallback;
 import com.awezumTree.buddyolympics.restClient.HTTPRestTemplate;
-import com.awezumTree.buddyolympics.restClient.RestPostClient;
+import com.awezumTree.buddyolympics.restClient.RestGetClient;
 
 public class RunActivity extends Activity implements AsyncTaskCallback{
 
@@ -68,22 +71,15 @@ public class RunActivity extends Activity implements AsyncTaskCallback{
 //						.show();
 				
 				//vf.addView((LinearLayout) findViewById(R.layout.distance_run_layout));
-				Log.d("LOLCAT", "sap nigroooo!");
 				vf.setDisplayedChild(2+position);
 				adjustNextButton();		
 			}
 		});
 	}
 	
-	public void fillRunnersList() {
-		HTTPRestTemplate post = new RestPostClient(this,"http://192.168.13.102:8080/runners");
-		post.execute();		
-		String[] sports = {"lol", "kok", "sap", "dap", "fapp", "crap"};
-		this.runnersAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_multiple_choice, sports);
-		this.runnersListView = (ListView) findViewById(R.id.runnersList);
-		this.runnersListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-		this.runnersListView.setAdapter(this.runnersAdapter);
+	public void fillRunnersList() {		
+		HTTPRestTemplate get = new RestGetClient(this,"http://192.168.13.102:8080/runners");
+		get.execute();
 	}
 
 	private ArrayList<Map<String, String>> buildData() {
@@ -110,19 +106,35 @@ public class RunActivity extends Activity implements AsyncTaskCallback{
 	
 	public void nextPage(View view) {
 		this.adjustNextButton();
-		vf.showNext();
+		
 	}
 	
 	
 	private void adjustNextButton() {
 
+		Log.d("LOLCAT" , "Now shoing: " + vf.getDisplayedChild() + ", count: " + vf.getChildCount());
 		if ( stage == 1 || stage == 3) {
 			nextButton.setVisibility(View.INVISIBLE);
+			
+			if ( stage == 3) {
+				Log.d("LOLCAT", "WIll set list thing");
+				// 
+				
+				vf.setDisplayedChild(1);
+				Log.d("LOLCAT" , "id: " + vf.getChildAt(0).getId());
+				Log.d("LOLCAT" , "id: " + vf.getChildAt(1).getId());
+				Log.d("LOLCAT" , "id: " + vf.getChildAt(2).getId());
+				Log.d("LOLCAT" , "id: " + vf.getChildAt(3).getId());
+				Log.d("LOLCAT" , "id: " + vf.getChildAt(4).getId());
+				
+				
+			}
 		} else if (stage == 2 ) {
 			nextButton.setVisibility(View.VISIBLE);
 		}
 		Log.d("LOLCAT", "stage= " + stage);
 		stage ++;
+		vf.showNext();
 	}
 	
 	
@@ -143,7 +155,7 @@ public class RunActivity extends Activity implements AsyncTaskCallback{
            Log.d("LOLCAT", "du har: " + selectedItems.get(i));
         }
 	}
-
+/*
 	@Override
 	public boolean onTouchEvent(MotionEvent touchevent) {
 		switch (touchevent.getAction()) {
@@ -171,12 +183,32 @@ public class RunActivity extends Activity implements AsyncTaskCallback{
 		}
 		}
 		return false;
-	}
+	}*/
 
 
 	@Override
 	public void callback(String res) {
-		// TODO Auto-generated method stub
+		JSONArray json;
+		try {
+			json = new JSONArray(res);
+			
+			
+			JSONObject obj = new JSONObject(json.get(0).toString());
+			Log.d("LOLCAT" , "object now : " + obj.toString());
+		
+		Log.d("LOLCAT", "callbacken: " + res);
+		String[] sports = {obj.getString("username"), "teen", "sex", "dap", "fapp", "crap"};
+		
+		this.runnersAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_multiple_choice, sports);
+		this.runnersListView = (ListView) findViewById(R.id.runnersList);
+		this.runnersListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		this.runnersListView.setAdapter(this.runnersAdapter);
+		
+		} catch (JSONException e) {
+			Log.d("LOLCAT", "json parse  : " + e.getMessage());
+		}
+	
 		
 	}
 

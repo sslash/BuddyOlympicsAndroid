@@ -19,6 +19,7 @@
         android:layout_height="178dp"
         android:layout_margin="6dip" >
 
+        <!--  Set time / date -->
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -37,6 +38,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
+        <!-- Set run type -->
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -57,6 +59,7 @@
             </ListView>
         </LinearLayout>
 
+        <!-- 2 different run types -->
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
