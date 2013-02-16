@@ -9,19 +9,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/addRunners"
-        android:textSize="30px" >
-    </TextView>
+        android:textSize="30px" />
 
      <ListView
-        android:id="@+id/runnersList"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"/>
-     
-    <Button
-        android:id="@+id/testbutton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="doneRunCreate"
-        android:text="@string/doneCreateRun" />
+         android:id="@+id/runnersList"
+         android:layout_width="wrap_content"
+         android:layout_height="fill_parent" />
 
 </LinearLayout>

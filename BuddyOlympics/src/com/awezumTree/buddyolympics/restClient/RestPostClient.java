@@ -12,6 +12,10 @@ public class RestPostClient extends HTTPRestTemplate {
 	public RestPostClient(AsyncTaskCallback runActivity, String url) {
 		super(runActivity, url);
 	}
+	
+	public RestPostClient(String url) {
+		super(url);
+	}
 
 	@Override
 	public void initHttpMethod() throws UnsupportedEncodingException {

@@ -50,6 +50,10 @@ public abstract class HTTPRestTemplate extends AsyncTask {
 			}
 		}
 	}
+	
+	public void setJsonBody(JSONObject obj) {
+		this.jsonBody = obj;
+	}
 
 	public void setUrl(String url) {
 		this.url = url;
@@ -67,6 +71,10 @@ public abstract class HTTPRestTemplate extends AsyncTask {
 		this.url = url;
 	}
 
+	public HTTPRestTemplate(String url) {
+		this.url = url;
+	}
+
 	public abstract void initHttpMethod() throws UnsupportedEncodingException;
 
 	@Override
@@ -81,13 +89,13 @@ public abstract class HTTPRestTemplate extends AsyncTask {
 			return handleResponse();
 		} catch (Exception e) {
 			Log.e("LOLCAT", "Error in server communication! " + e.getMessage());
+			return "fail";
 		} finally {
 			if (httpclient != null) {
 				httpclient.getConnectionManager().shutdown();
 			}
 
 		}
-		return null;
 	}
 
 	private String handleResponse() throws ClientProtocolException, IOException {

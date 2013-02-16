@@ -76,7 +76,7 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 			if (resultCode == RESULT_OK) {
 				this.saveRunnerAndLogin(data.getExtras());
 			}
-		}else if(resultCode == LOGIN_ACTIVITY ) {
+		}else if(requestCode == LOGIN_ACTIVITY ) {
 			if (resultCode == RESULT_OK ) {
 				this.authenticateUserAndLogin(data.getExtras());
 			}

@@ -62,12 +62,14 @@ public class AuthenticateActivity extends Activity implements AsyncTaskCallback 
 		Intent toReturn = this.getIntent();
 		Log.d("LOLCAT", "RES FROM HENRIKZ: " + res);
 		
-		if ("ok".equals(res)) {
+		if ("fail".equals(res)) {
+			Log.e("LOLCAT", "AUTH FAILED! YOU CUNT.");
+			Toast.makeText(getApplicationContext(), "Authentication failed. You have no soul",
+					Toast.LENGTH_LONG).show();
+		} else {
 			Toast.makeText(getApplicationContext(), R.string.reg_success,
 					Toast.LENGTH_LONG).show();
 			toReturn.putExtra(SignUpActivity.BUNDLE, this.authData);
-		} else {
-			Log.e("LOLCAT", "AUTH FAILED! YOU CUNT");
 		}
 		this.setResult(RESULT_OK, toReturn);
 		this.finish();
