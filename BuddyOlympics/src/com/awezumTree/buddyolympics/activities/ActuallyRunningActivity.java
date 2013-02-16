@@ -1,6 +1,5 @@
 package com.awezumTree.buddyolympics.activities;
 
-import gps.GPSService;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -8,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.awezumTree.buddyolympics.R;
+import com.awezumTree.buddyolympics.gps.GPSService;
 
 public class ActuallyRunningActivity extends Activity {
 	GPSService gps;

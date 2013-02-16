@@ -1,4 +1,4 @@
-package gps;
+package com.awezumTree.buddyolympics.gps;
 
 import android.app.AlertDialog;
 import android.app.Service;

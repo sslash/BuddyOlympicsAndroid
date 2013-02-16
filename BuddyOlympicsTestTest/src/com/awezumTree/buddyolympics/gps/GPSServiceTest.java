@@ -1,6 +1,7 @@
 package com.awezumTree.buddyolympics.gps;
 
-import gps.GPSService;
+import com.awezumTree.buddyolympics.gps.GPSService;
+
 import junit.framework.Assert;
 import android.content.Context;
 import android.test.AndroidTestCase;
