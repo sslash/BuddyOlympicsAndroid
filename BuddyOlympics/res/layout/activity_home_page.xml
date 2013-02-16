@@ -1,29 +1,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical" >
-    
+    android:orientation="vertical"
+    tools:context=".HomePageActivity" >
+
     <ImageView
-        android:id="@+id/label"
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/label" />
- 
-    <Button
-        android:id="@+id/signInBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_up"
-        android:onClick="signUp" />
 
     <Button
-        android:id="@+id/loginBtn"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="login" 
-        android:text="@string/login" />
-    
+        android:text="New Run" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find Friends" />
 
 </LinearLayout>

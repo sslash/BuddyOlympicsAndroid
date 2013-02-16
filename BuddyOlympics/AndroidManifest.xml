@@ -7,7 +7,8 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -27,6 +28,14 @@
         <activity
             android:name="com.awezumTree.buddyolympics.activities.SignUpActivity"
             android:label="@string/title_activity_sign_up" >
+        </activity>
+        <activity
+            android:name="com.awezumTree.buddyolympics.activities.HomePageActivity"
+            android:label="@string/title_activity_home_page" >
+        </activity>
+        <activity
+            android:name="com.awezumTree.buddyolympics.activities.AuthenticateActivity"
+            android:label="@string/title_activity_authenticate" >
         </activity>
     </application>
 

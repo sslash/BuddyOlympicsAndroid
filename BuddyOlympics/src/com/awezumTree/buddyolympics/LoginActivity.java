@@ -11,13 +11,20 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
+import com.awezumTree.buddyolympics.activities.AuthenticateActivity;
+import com.awezumTree.buddyolympics.activities.HomePageActivity;
 import com.awezumTree.buddyolympics.activities.SignUpActivity;
+import com.awezumTree.buddyolympics.domain.Runner;
+import com.awezumTree.buddyolympics.domain.RunnerFactory;
 import com.awezumTree.buddyolympics.restClient.AsyncTaskCallback;
 import com.awezumTree.buddyolympics.restClient.RestClient;
 
 public class LoginActivity extends Activity implements AsyncTaskCallback{
 
 	public static final int SIGN_UP_ACTIVITY = 1;
+	public static final int LOGIN_ACTIVITY = 2;
+	
+	private Runner user;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +47,40 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 	 * 
 	 */
 	public void signUp(View view) {
-
-		// An intent provides runtime binding between two components
 		Intent intent = new Intent(this, SignUpActivity.class);
 		startActivityForResult(intent, SIGN_UP_ACTIVITY);
 	}
 
+
+	public void login(View view) {
+		Intent intent = new Intent(this, AuthenticateActivity.class);
+		startActivityForResult(intent, LOGIN_ACTIVITY);
+	}
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == SIGN_UP_ACTIVITY) {
 			if (resultCode == RESULT_OK) {
 				this.saveRunnerAndLogin(data.getExtras());
 			}
+		}else if(resultCode == LOGIN_ACTIVITY ) {
+			if (resultCode == RESULT_OK ) {
+				this.authenticateUserAndLogin(data.getExtras());
+			}
 		}
+	}
+
+	private void authenticateUserAndLogin(Bundle extras) {
+		Bundle authData = (Bundle) extras.get(SignUpActivity.BUNDLE);
+		if ( authData != null ) {
+			Log.d("LOLCAT", "auth success");
+			this.user = RunnerFactory.createRunner(authData);
+			Log.d("LOLCAT", "user: " + user.toString());
+			doLogIn();			
+		} else {
+			Log.d("LOLCAT", "auth failed");
+		}
+		
 	}
 
 	private void saveRunnerAndLogin(Bundle runnerData) {
@@ -64,9 +92,11 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 		}
 	}
 
-	private void postRunnerToServer(Bundle runnerData) {
+	private void postRunnerToServer(Bundle inputData) {
 		RestClient post = new RestClient(this);
-		post.setJsonBody((Bundle)runnerData.get(SignUpActivity.BUNDLE));			
+		Bundle runnerData = (Bundle) inputData.get(SignUpActivity.BUNDLE); 
+		this.user = RunnerFactory.createRunner(runnerData);
+		post.setJsonBody(runnerData);			
 		post.execute("http://192.168.13.101:8080/runners");			
 	}
 	
@@ -83,10 +113,21 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 		if ( !"ok".equals(res) ){
 			Toast.makeText(getApplicationContext(),
 					R.string.reg_success, Toast.LENGTH_LONG).show();
-			
+			if ( user != null ){
+				doLogIn();
+			}else {
+				Log.e("LOLCAT", "USER WAS NULL BIETCH");
+			}
 		} else {
 			Log.d("LOLCAT", "NGR " + res);
 		}
 		
+	}
+
+	private void doLogIn() {
+		Log.d("LOL", "Will log in user! " + user.toString());
+		Intent intent = new Intent(this, HomePageActivity.class);
+	    intent.putExtra("user", user);
+	    startActivity(intent);
 	}
 }

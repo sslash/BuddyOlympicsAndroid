@@ -11,11 +11,11 @@ import android.widget.EditText;
 import com.awezumTree.buddyolympics.R;
 
 public class SignUpActivity extends Activity {
-	
-	public final static String USERNAME = "1";
-	public final static String EMAIL = "2";
-	public final static String PASSWORD = "3";
-	public final static String BUNDLE ="__BUNDLE__";
+
+	public final static String USERNAME = "username";
+	public final static String EMAIL = "email";
+	public final static String PASSWORD = "password";
+	public final static String BUNDLE = "__BUNDLE__";
 
 	@SuppressLint("NewApi")
 	@Override
@@ -30,24 +30,24 @@ public class SignUpActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_sign_up, menu);
 		return true;
 	}
-	
-	 public void done(View view) {
-	    	Intent toReturn = this.getIntent();
-	    	toReturn.putExtra(BUNDLE, parseInputAndGetRunnerData());
-	    	this.setResult(RESULT_OK, toReturn);
-	    	this.finish();
-	    }
+
+	public void done(View view) {
+		Intent toReturn = this.getIntent();
+		toReturn.putExtra(BUNDLE, parseInputAndGetRunnerData());
+		this.setResult(RESULT_OK, toReturn);
+		this.finish();
+	}
 
 	private Bundle parseInputAndGetRunnerData() {
 		Bundle data = new Bundle();
 		EditText username = (EditText) findViewById(R.id.usernameInput);
-    	EditText email = (EditText) findViewById(R.id.emailInput);
-    	EditText password = (EditText) findViewById(R.id.passwordInput);
-    	
-    	data.putString(USERNAME, username.getText().toString());
-    	data.putString(EMAIL, email.getText().toString());
-    	data.putString(PASSWORD, password.getText().toString());
-    	
+		EditText email = (EditText) findViewById(R.id.emailInput);
+		EditText password = (EditText) findViewById(R.id.passwordInput);
+
+		data.putString(USERNAME, username.getText().toString());
+		data.putString(EMAIL, email.getText().toString());
+		data.putString(PASSWORD, password.getText().toString());
+
 		return data;
 	}
 
