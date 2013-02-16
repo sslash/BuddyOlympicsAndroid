@@ -16,6 +16,12 @@
     <string name="title_activity_home_page">HomePageActivity</string>
     <string name="title_activity_authenticate">AuthenticatActivity</string>
     <string name="title_activity_run">RunActivity</string>
+    <string name="pick_run_type">Pick a Run-type</string>
+    <string name="setDistance">Set Distance</string>
+    <string name="setTime">Set Time</string>
+    <string name="addRunners">Add Runners</string>
+    <string name="doneCreateRun">Done!</string>
     <string name="title_activity_add_friend">AddFriendActivity</string>
+
 
 </resources>
