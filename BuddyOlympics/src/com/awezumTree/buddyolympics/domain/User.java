@@ -2,7 +2,10 @@ package com.awezumTree.buddyolympics.domain;
 
 import java.util.Set;
 
-public class User extends Runner{	
+public class User extends Runner{
+	public final static String EMAIL = "email";
+	public final static String PASSWORD = "password";
+	
 	private String email;	
 	private String password;
 	private Set<Friend> friendlist;
@@ -33,8 +36,7 @@ public class User extends Runner{
 
 	@Override
 	public String toString() {
-		return "User ["+ super.toString()+ ", email=" + email
-				+ ", password=" + password + ", friends=" + friendlist.toString() + "]";
+		return "{"+ super.toString() + ", email: '" + email + "', password: '" + password + "'}";
 	}
 	
 }

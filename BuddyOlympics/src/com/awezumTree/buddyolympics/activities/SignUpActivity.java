@@ -9,12 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.awezumTree.buddyolympics.R;
+import com.awezumTree.buddyolympics.domain.User;
 
 public class SignUpActivity extends Activity {
-
-	public final static String USERNAME = "username";
-	public final static String EMAIL = "email";
-	public final static String PASSWORD = "password";
 	public final static String BUNDLE = "__BUNDLE__";
 
 	@SuppressLint("NewApi")
@@ -44,9 +41,9 @@ public class SignUpActivity extends Activity {
 		EditText email = (EditText) findViewById(R.id.emailInput);
 		EditText password = (EditText) findViewById(R.id.passwordInput);
 
-		data.putString(USERNAME, username.getText().toString());
-		data.putString(EMAIL, email.getText().toString());
-		data.putString(PASSWORD, password.getText().toString());
+		data.putString(User.USERNAME, username.getText().toString());
+		data.putString(User.EMAIL, email.getText().toString());
+		data.putString(User.PASSWORD, password.getText().toString());
 
 		return data;
 	}

@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.awezumTree.buddyolympics.R;
-import com.awezumTree.buddyolympics.domain.UserFactory;
+import com.awezumTree.buddyolympics.domain.User;
 import com.awezumTree.buddyolympics.restClient.AsyncTaskCallback;
 import com.awezumTree.buddyolympics.restClient.RestClient;
 
@@ -48,8 +48,8 @@ public class AuthenticateActivity extends Activity implements AsyncTaskCallback 
 		}
 
 		this.authData = new Bundle();
-		this.authData.putString(SignUpActivity.USERNAME, u);
-		this.authData.putString(SignUpActivity.PASSWORD, p);
+		this.authData.putString(User.USERNAME, u);
+		this.authData.putString(User.PASSWORD, p);
 		RestClient post = new RestClient(this);
 		Log.d("LOLCAT", "u + p: " + u + ",'" + p+"'");
 		post.setJsonBody(this.authData);

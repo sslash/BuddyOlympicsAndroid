@@ -10,11 +10,11 @@ import com.awezumTree.buddyolympics.activities.SignUpActivity;
 public class UserFactory {
 	
 	@SuppressLint("NewApi")
-	public static User createRunner(Bundle runnerData) {
+	public static User createUser(Bundle runnerData) {
 		User user = new User();
-		String username = runnerData.getString(SignUpActivity.USERNAME);
-		String email = runnerData.getString(SignUpActivity.EMAIL);
-		String password = runnerData.getString(SignUpActivity.PASSWORD);
+		String username = runnerData.getString(User.USERNAME);
+		String email = runnerData.getString(User.EMAIL);
+		String password = runnerData.getString(User.PASSWORD);
 		
 		if ( username != null && !username.isEmpty() ) 
 			user.setUsername(username);

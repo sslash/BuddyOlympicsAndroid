@@ -87,7 +87,7 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 		Bundle authData = (Bundle) extras.get(SignUpActivity.BUNDLE);
 		if ( authData != null ) {
 			Log.d("LOLCAT", "auth success");
-			this.user = UserFactory.createRunner(authData);
+			this.user = UserFactory.createUser(authData);
 			Log.d("LOLCAT", "user: " + user.toString());
 			doLogIn();			
 		} else {
@@ -108,7 +108,7 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 	private void postRunnerToServer(Bundle inputData) {
 		RestClient post = new RestClient(this);
 		Bundle runnerData = (Bundle) inputData.get(SignUpActivity.BUNDLE); 
-		this.user = UserFactory.createRunner(runnerData);
+		this.user = UserFactory.createUser(runnerData);
 		post.setJsonBody(runnerData);			
 		post.execute("http://192.168.13.102:8080/runners");			
 	}
