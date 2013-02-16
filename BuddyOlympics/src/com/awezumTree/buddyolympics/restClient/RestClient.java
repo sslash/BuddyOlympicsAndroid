@@ -1,18 +1,12 @@
 package com.awezumTree.buddyolympics.restClient;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -22,12 +16,11 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
 // Uses AsyncTask to create a task away from the main UI thread.
-public class RestClient extends AsyncTask {
+public class RestClient extends HTTPRestTemplate {
 	
 	private ArrayList <NameValuePair> httpHeaders;
 	private ArrayList <NameValuePair> httpParams;
@@ -52,8 +45,7 @@ public class RestClient extends AsyncTask {
 				Log.e("LOLCAT", "setJsonBody() - " + e.getMessage());
 			}
 		}
-	}
-	
+	}	
 	
 	public RestClient() {
 		this.httpHeaders = new ArrayList<NameValuePair>();
@@ -128,6 +120,61 @@ public class RestClient extends AsyncTask {
 			}
 			
 		}
+	}
+
+	@Override
+	public void initHttpMethod() {
+		
+		try {
+			//
+			httpMessage = new HttpPost(url);
+			StringEntity se = new StringEntity(jsonBody.toString());
+			((HttpPost)httpMessage).setEntity(se);
+			httpMessage.setHeader("Accept", "application/json");
+			httpMessage.setHeader("Content-type", "application/json");
+			
+			ResponseHandler responseHandler = new BasicResponseHandler();
+			
+			@SuppressWarnings("unchecked")
+			String response = httpclient.execute(httpMessage, responseHandler);
+			Log.d("LOLCAT ", response );
+			/*
+			if (response.getStatusLine().getStatusCode() != 201) {
+				throw new RuntimeException("Failed : HTTP error code : "
+					+ response.getStatusLine().getStatusCode());
+			}else {
+				Log.d("LOLCAT", "BITCHES");
+			}
+	 
+			BufferedReader br = new BufferedReader(
+	                        new InputStreamReader((response.getEntity().getContent())));
+	 
+	 
+			String output;
+			System.out.println("Output from Server .... \n");
+			while ((output = br.readLine()) != null) {
+				System.out.println(output);
+			}
+			
+	*/
+			//return response;
+	 
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (httpclient != null) {
+				httpclient.getConnectionManager().shutdown();
+			}
+			
+		}
+		
 	}
 
 }
