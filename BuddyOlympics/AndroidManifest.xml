@@ -36,9 +36,8 @@
             android:label="@string/title_activity_home_page" >
         </activity>
         <activity
-            android:name="com.awezumTree.buddyolympics.activities.AuthenticateActivity">
-            <!-- android:label="@string/title_activity_authenticate" > -->
-          
+            android:name="com.awezumTree.buddyolympics.activities.AuthenticateActivity"
+            android:label="@string/title_activity_authenticate" >
         </activity>
         <activity
             android:name="com.awezumTree.buddyolympics.activities.RunActivity"
@@ -51,7 +50,11 @@
         <activity
             android:name="com.awezumTree.buddyolympics.activities.ActuallyRunningActivity"
             android:label="@string/title_activity_actually_running" >
-        </activity>         
+        </activity>
+        <activity
+            android:name="com.awezumTree.buddyolympics.activities.ShowRunRequests"
+            android:label="@string/title_activity_show_run_requests" >
+        </activity>
     </application>
 
 </manifest>

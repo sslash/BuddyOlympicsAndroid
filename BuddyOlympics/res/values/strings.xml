@@ -25,5 +25,8 @@
     <string name="longitude">The Smoon</string>
     <string name="latitude">Left of</string>
     <string name="title_activity_actually_running">title_activity_actually_running</string>
-    
+    <string name="new_requests">New Requests</string>
+    <string name="new_run_requests">New Run Requests</string>
+    <string name="title_activity_show_run_requests">ShowRunRequests</string>
+
 </resources>

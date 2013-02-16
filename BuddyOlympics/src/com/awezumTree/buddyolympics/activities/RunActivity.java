@@ -77,12 +77,8 @@ public class RunActivity extends Activity implements AsyncTaskCallback {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				
-
-				// vf.addView((LinearLayout)
-				// findViewById(R.layout.distance_run_layout));
 				runType = position;
-				vf.setDisplayedChild(2 + position);
+				vf.setDisplayedChild(2 + position); // + 2, because the first 2 static choices
 				adjustNextButton();
 			}
 		});
