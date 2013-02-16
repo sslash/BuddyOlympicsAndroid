@@ -16,7 +16,8 @@ import com.awezumTree.buddyolympics.activities.AuthenticateActivity;
 import com.awezumTree.buddyolympics.activities.HomePageActivity;
 import com.awezumTree.buddyolympics.activities.RunActivity;
 import com.awezumTree.buddyolympics.activities.SignUpActivity;
-import com.awezumTree.buddyolympics.domain.Runner;
+import com.awezumTree.buddyolympics.cache.UserCacheRegistry;
+import com.awezumTree.buddyolympics.domain.User;
 import com.awezumTree.buddyolympics.domain.UserFactory;
 import com.awezumTree.buddyolympics.restClient.AsyncTaskCallback;
 import com.awezumTree.buddyolympics.restClient.RestPostClient;
@@ -26,7 +27,7 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 	public static final int SIGN_UP_ACTIVITY = 1;
 	public static final int LOGIN_ACTIVITY = 2;
 	
-	private Runner user;
+	private User user;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,7 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 		if ( authData != null ) {
 			Log.d("LOLCAT", "auth success");
 			this.user = UserFactory.createUser(authData);
+			UserCacheRegistry.set(user, this);
 			Log.d("LOLCAT", "user: " + user.toString());
 			doLogIn();			
 		} else {

@@ -20,16 +20,16 @@ public class UserCacheRegistry {
 		fetcher = new CacheFileFetcher(cachename);
 	}
 	
-	public static User get(String cachename, Context context) {
+	public static User get(Context context) {
 		if (instance == null) {
-			instance = new UserCacheRegistry(cachename);
+			instance = new UserCacheRegistry(UserCacheRegistry.USER_CACHE_FILE);
 		}
 		return jsonToUser(instance.fetcher.getCachedData(context));
 	}
 
-	public static void set(User user, String cachename, Context context) {
+	public static void set(User user, Context context) {
 		if (instance == null) {
-			instance = new UserCacheRegistry(cachename);
+			instance = new UserCacheRegistry(UserCacheRegistry.USER_CACHE_FILE);
 		}
 		instance.fetcher.setCacheData(userToJson(user), context);
 	}

@@ -33,12 +33,13 @@ public class AddFriendActivity extends Activity implements AsyncTaskCallback{
 	Set<Friend> friendlist = new HashSet<Friend>();
 	User user;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_friend);
 		
-		User user = UserCacheRegistry.get(UserCacheRegistry.USER_CACHE_FILE, this);
+		User user = UserCacheRegistry.get(this);
 		friendlist = user.getFriendlist();
 
 		RestGetClient get = new RestGetClient(this, "http://192.168.13.102:8080/runners");

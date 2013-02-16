@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 public class Runner implements Serializable {
 	public final static String USERNAME = "username";
+	public final static String RUNNER = "runner";
 	
 	private String username;
+	private String runner;
 	
 	private String id;
 	
@@ -34,5 +36,13 @@ public class Runner implements Serializable {
 	@Override
 	public String toString() {
 		return "username: '" + username+ "'";
+	}
+
+	public String getRunner() {
+		return runner;
+	}
+
+	public void setRunner(String runner) {
+		this.runner = runner;
 	}
 }
