@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
+import android.widget.Toast;
 
 public class GPSService extends Service implements LocationListener {
     // The minimum distance to change Updates in meters
@@ -111,32 +112,35 @@ public class GPSService extends Service implements LocationListener {
     }
 
 	@Override
-	public void onLocationChanged(Location arg0) {
-		// TODO Auto-generated method stub
+	public void onLocationChanged(Location loc) {
 		
+		location = loc;
+		longitude = loc.getLongitude();
+		latitude = loc.getLatitude();
+		
+		Log.d("KOKAIN", "new posish: "+ longitude + ", " + latitude);
 	}
 
 	@Override
 	public void onProviderDisabled(String arg0) {
-		// TODO Auto-generated method stub
+		Log.d("GPSEvent", "provider disabled - "+arg0);
 		
 	}
 
 	@Override
 	public void onProviderEnabled(String arg0) {
-		// TODO Auto-generated method stub
+		Log.d("GPSEvent", "provider enabled - " + arg0);
 		
 	}
 
 	@Override
 	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
-		// TODO Auto-generated method stub
-		
+		Log.d("GPSEvent", "status changed - " + arg0);
 	}
 
 	@Override
 	public IBinder onBind(Intent arg0) {
-		// TODO Auto-generated method stub
+		Log.d("GPSEvent", "bind - " + arg0.toString());
 		return null;
 	}
 

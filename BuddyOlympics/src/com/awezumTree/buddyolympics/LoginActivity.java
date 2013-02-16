@@ -11,7 +11,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
-import com.awezumTree.buddyolympics.activities.AddFriendActivity;
+import com.awezumTree.buddyolympics.activities.ActuallyRunningActivity;
 import com.awezumTree.buddyolympics.activities.AuthenticateActivity;
 import com.awezumTree.buddyolympics.activities.HomePageActivity;
 import com.awezumTree.buddyolympics.activities.RunActivity;
@@ -58,8 +58,8 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 		startActivity(intent);
 	}
 	
-	public void addFriendTest(View view) {
-		Intent intent = new Intent(this, AddFriendActivity.class);
+	public void actuallyRunning(View view) {
+		Intent intent = new Intent(this, ActuallyRunningActivity.class);
 		startActivity(intent);
 	}
 	
