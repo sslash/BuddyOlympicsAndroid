@@ -42,7 +42,7 @@ public class HomePageActivity extends Activity implements AsyncTaskCallback{
 
 	private void getRunRequests() {
 		RestPostClient post = new RestPostClient(this,
-				R.string.server_url+"/runs/" +loggedInUser.getId());
+				getString(R.string.server_url)+"/runs/" +loggedInUser.getId());
 	}
 
 	private void setRunner() {

@@ -42,7 +42,7 @@ public class AddFriendActivity extends Activity implements AsyncTaskCallback{
 		User user = UserCacheRegistry.get(this);
 		friendlist = user.getFriendlist();
 
-		RestGetClient get = new RestGetClient(this, R.string.server_url+"/runners");
+		RestGetClient get = new RestGetClient(this, getString(R.string.server_url)+"/runners");
 		get.execute();
 
 	}

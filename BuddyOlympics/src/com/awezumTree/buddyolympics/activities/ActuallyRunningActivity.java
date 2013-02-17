@@ -80,7 +80,7 @@ public class ActuallyRunningActivity extends Activity implements AsyncTaskCallba
 				int length = locations.size() - 1;
 				List<Location> subLocations = locations.subList(pushedLocationIndex, length);
 				pushedLocationIndex = length;
-				RestPutClient put = new RestPutClient(cb, R.string.server_url+"/runs");	
+				RestPutClient put = new RestPutClient(cb, getString(R.string.server_url)+"/runs");	
 				try {
 					put.setJsonBody(JSONUtils.buildRunLocationUpdate(subLocations, UserCacheRegistry.get(cb)));
 					put.execute();
