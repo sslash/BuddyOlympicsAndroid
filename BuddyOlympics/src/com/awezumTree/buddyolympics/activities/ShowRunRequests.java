@@ -5,18 +5,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.awezumTree.buddyolympics.R;
 import com.awezumTree.buddyolympics.cache.SimpleRegistry;
@@ -58,6 +56,17 @@ public class ShowRunRequests extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				
+				// 1. Instantiate an AlertDialog.Builder with its constructor
+				AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+
+				// 2. Chain together various setter methods to set the dialog characteristics
+				builder.setMessage("U have brown skin color.")
+				       .setTitle("Which is niez");
+
+				// 3. Get the AlertDialog from create()
+				AlertDialog dialog = builder.create();
+				dialog.show();
 			}
 		});
 	}
