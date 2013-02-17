@@ -107,7 +107,7 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 	}
 
 	private void postRunnerToServer(Bundle inputData) {
-		RestPostClient post = new RestPostClient(this,"http://192.168.13.102:8080/runners" );
+		RestPostClient post = new RestPostClient(this,getString(R.string.server_url)+"/runners" );
 		Bundle runnerData = (Bundle) inputData.get(SignUpActivity.BUNDLE); 
 		this.user = UserFactory.createUser(runnerData);
 		post.setJsonBody(runnerData);			
