@@ -3,8 +3,6 @@ package com.awezumTree.buddyolympics.domain;
 import java.io.Serializable;
 
 public class Runner implements Serializable {
-	public final static String USERNAME = "username";
-	public final static String RUNNER = "runner";
 	
 	private String username;
 	private String runner;

@@ -15,9 +15,9 @@ import android.widget.Toast;
 
 import com.awezumTree.buddyolympics.R;
 import com.awezumTree.buddyolympics.cache.UserCacheRegistry;
-import com.awezumTree.buddyolympics.domain.User;
 import com.awezumTree.buddyolympics.restClient.AsyncTaskCallback;
 import com.awezumTree.buddyolympics.restClient.RestPostClient;
+import com.awezumTree.buddyolympics.schemas.RunnersSchema;
 
 @SuppressLint("NewApi")
 public class AuthenticateActivity extends Activity implements AsyncTaskCallback {
@@ -52,8 +52,8 @@ public class AuthenticateActivity extends Activity implements AsyncTaskCallback 
 		}
 
 		this.authData = new Bundle();
-		this.authData.putString(User.USERNAME, u);
-		this.authData.putString(User.PASSWORD, p);
+		this.authData.putString(RunnersSchema.USERNAME, u);
+		this.authData.putString(RunnersSchema.PASSWORD, p);
 		RestPostClient post = new RestPostClient(this,getString(R.string.server_url)+"/login");
 		Log.d("LOLCAT", "u + p: " + u + ",'" + p+"'");
 		post.setJsonBody(this.authData);

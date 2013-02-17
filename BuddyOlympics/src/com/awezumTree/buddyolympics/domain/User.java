@@ -3,8 +3,6 @@ package com.awezumTree.buddyolympics.domain;
 import java.util.Set;
 
 public class User extends Runner{
-	public final static String EMAIL = "email";
-	public final static String PASSWORD = "password";
 
 	private String email;	
 	private String password;

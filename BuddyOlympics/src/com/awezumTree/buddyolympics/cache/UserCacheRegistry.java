@@ -1,6 +1,5 @@
 package com.awezumTree.buddyolympics.cache;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
@@ -9,6 +8,7 @@ import android.util.Log;
 
 import com.awezumTree.buddyolympics.domain.User;
 import com.awezumTree.buddyolympics.domain.UserFactory;
+import com.awezumTree.buddyolympics.schemas.RunnersSchema;
 
 public class UserCacheRegistry {
 	public static final String USER_CACHE_FILE = "user_cache_file";
@@ -45,9 +45,9 @@ public class UserCacheRegistry {
 	public static User jsonToUser(JSONObject cachedData) {
 		Bundle configuration = new Bundle();
 		try {
-			configuration.putString(User.USERNAME, cachedData.getString(User.USERNAME));
-			configuration.putString(User.EMAIL, cachedData.getString(User.EMAIL));
-			configuration.putString(User.PASSWORD, cachedData.getString(User.PASSWORD));
+			configuration.putString(RunnersSchema.USERNAME, cachedData.getString(RunnersSchema.USERNAME));
+			configuration.putString(RunnersSchema.EMAIL, cachedData.getString(RunnersSchema.EMAIL));
+			configuration.putString(RunnersSchema.PASSWORD, cachedData.getString(RunnersSchema.PASSWORD));
 		} catch (Exception e) {
 			Log.e("UserCacheError", "json to user: " + e.getMessage());
 		}
@@ -57,9 +57,9 @@ public class UserCacheRegistry {
 	public static JSONObject userToJson(User user) {
 		JSONObject json = new JSONObject();
 		try {
-			json.put(User.USERNAME, user.getUsername());
-			json.put(User.EMAIL, user.getEmail());
-			json.put(User.PASSWORD, user.getPassword());
+			json.put(RunnersSchema.USERNAME, user.getUsername());
+			json.put(RunnersSchema.EMAIL, user.getEmail());
+			json.put(RunnersSchema.PASSWORD, user.getPassword());
 		} catch (Exception e) {
 			Log.e("UserCacheError", "user to json: "+e.getMessage());
 		}
