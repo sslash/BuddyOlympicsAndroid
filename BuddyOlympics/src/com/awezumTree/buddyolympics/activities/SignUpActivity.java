@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.awezumTree.buddyolympics.R;
-import com.awezumTree.buddyolympics.domain.User;
+import com.awezumTree.buddyolympics.schemas.RunnersSchema;
 
 public class SignUpActivity extends Activity {
 	public final static String BUNDLE = "__BUNDLE__";
@@ -41,9 +41,9 @@ public class SignUpActivity extends Activity {
 		EditText email = (EditText) findViewById(R.id.emailInput);
 		EditText password = (EditText) findViewById(R.id.passwordInput);
 
-		data.putString(User.USERNAME, username.getText().toString());
-		data.putString(User.EMAIL, email.getText().toString());
-		data.putString(User.PASSWORD, password.getText().toString());
+		data.putString(RunnersSchema.USERNAME, username.getText().toString());
+		data.putString(RunnersSchema.EMAIL, email.getText().toString());
+		data.putString(RunnersSchema.PASSWORD, password.getText().toString());
 
 		return data;
 	}

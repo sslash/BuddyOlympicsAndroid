@@ -78,7 +78,7 @@ public class ActuallyRunningActivity extends Activity implements AsyncTaskCallba
 			@Override
 			public void run() {
 				int length = locations.size() - 1;
-				List<Location> subLocations = locations.subList(pushedLocationIndex, length);
+				Object[] subLocations = locations.subList(pushedLocationIndex, length).toArray();
 				pushedLocationIndex = length;
 				RestPutClient put = new RestPutClient(cb, getString(R.string.server_url)+"/runs");	
 				try {

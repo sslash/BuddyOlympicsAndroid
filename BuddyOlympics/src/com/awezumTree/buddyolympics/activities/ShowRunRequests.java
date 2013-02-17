@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONArray;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -22,6 +20,9 @@ import android.widget.Toast;
 
 import com.awezumTree.buddyolympics.R;
 import com.awezumTree.buddyolympics.cache.SimpleRegistry;
+import com.awezumTree.buddyolympics.cache.UserCacheRegistry;
+import com.awezumTree.buddyolympics.domain.Run;
+import com.awezumTree.buddyolympics.domain.User;
 
 public class ShowRunRequests extends Activity {
 
@@ -35,18 +36,24 @@ public class ShowRunRequests extends Activity {
 		ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
 
 		SimpleRegistry reg = SimpleRegistry.getInstance();
-		JSONArray runRequests = (JSONArray) reg
-				.getObject(HomePageActivity.RUN_REQUESTS);
+		//JSONArray runRequests = (JSONArray) reg
+			//	.getObject(HomePageActivity.RUN_REQUESTS);
 
-		String [] jode = {"Slash", "THe megakill", "John Travz", "Nic Cage"};
+		//String [] jode = {"Slash", "THe megakill", "John Travz", "Nic Cage"};
 		//try {
-			for (int i = 0; i < jode.length;/*runRequests.length();*/ i++) {
-				//JSONObject obj;
-				//obj = new JSONObject(runRequests.get(i).toString());
-				//list.add(putData((String) obj.get("username"), "lol mart!"));
-				list.add(putData(jode[i], "U haz Invitez"));
-			}
-		//} catch (JSONException e) {
+		User loggedInUser = UserCacheRegistry.get(this);
+		for ( Run r : loggedInUser.getNewRuns() ) {
+			list.add(putData(r.startTimeString, r.type.getType()));
+		}
+//		
+//			for (int i = 0; i < jode.length;/*runRequests.length();*/ i++) {
+//				
+//				//JSONObject obj;
+//				//obj = new JSONObject(runRequests.get(i).toString());
+//				//list.add(putData((String) obj.get("username"), "lol mart!"));
+//				list.add(putData(jode[i], "U haz Invitez"));
+//			}
+//		//} catch (JSONException e) {
 			//Log.d("LOLCAT", "baedet paa jason parserer funksjonalitet! " + e.getMessage());
 		//}
 		

@@ -26,6 +26,7 @@ import com.awezumTree.buddyolympics.domain.FriendFactory;
 import com.awezumTree.buddyolympics.domain.User;
 import com.awezumTree.buddyolympics.restClient.AsyncTaskCallback;
 import com.awezumTree.buddyolympics.restClient.RestGetClient;
+import com.awezumTree.buddyolympics.schemas.RunnersSchema;
 
 public class AddFriendActivity extends Activity implements AsyncTaskCallback{
 	
@@ -60,8 +61,8 @@ public class AddFriendActivity extends Activity implements AsyncTaskCallback{
 			json = new JSONArray(res);
 			for (int i = 0; i < json.length(); i++) {
 				JSONObject runner = (JSONObject) json.get(i);
-				Log.d("TIGERCAT", runner.getString(User.USERNAME));
-				runnerlist.add(createFriendListEntry(runner.getString(User.USERNAME)));
+				Log.d("TIGERCAT", runner.getString(RunnersSchema.USERNAME));
+				runnerlist.add(createFriendListEntry(runner.getString(RunnersSchema.USERNAME)));
 			}
 		} catch (JSONException e) {
 			Log.e("JsonError", "get runners callback - " + e.getMessage());
