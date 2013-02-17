@@ -22,8 +22,6 @@ import com.awezumTree.buddyolympics.restClient.RestPostClient;
 @SuppressLint("NewApi")
 public class AuthenticateActivity extends Activity implements AsyncTaskCallback {
 
-	private Bundle authData;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,17 +44,18 @@ public class AuthenticateActivity extends Activity implements AsyncTaskCallback 
 	}
 
 	private boolean doAuthenticate(String u, String p) {
-		if (u == null || u.isEmpty() || p == null || p.isEmpty()){
-			//TODO: Give r-tard msg to user!
+		if (u == null || u.isEmpty() || p == null || p.isEmpty()) {
+			// TODO: Give r-tard msg to user!
 			return false;
 		}
 
-		this.authData = new Bundle();
-		this.authData.putString(User.USERNAME, u);
-		this.authData.putString(User.PASSWORD, p);
-		RestPostClient post = new RestPostClient(this,getString(R.string.server_url)+"/login");
-		Log.d("LOLCAT", "u + p: " + u + ",'" + p+"'");
-		post.setJsonBody(this.authData);
+		Bundle authData = new Bundle();
+		authData.putString(User.USERNAME, u);
+		authData.putString(User.PASSWORD, p);
+		RestPostClient post = new RestPostClient(this,
+				getString(R.string.server_url) + "/login");
+		Log.d("LOLCAT", "u + p: " + u + ",'" + p + "'");
+		post.setJsonBody(authData);
 		post.execute();
 		return true;
 	}
@@ -65,23 +64,18 @@ public class AuthenticateActivity extends Activity implements AsyncTaskCallback 
 	public void callback(String res) {
 		Intent toReturn = this.getIntent();
 		Log.d("LOLCAT", "RES FROM HENRIKZ: " + res);
-		
+
 		if ("fail".equals(res)) {
 			Log.e("LOLCAT", "AUTH FAILED! YOU CUNT.");
-			Toast.makeText(getApplicationContext(), "Authentication failed. You have no soul",
+			Toast.makeText(getApplicationContext(),
+					"Authentication failed. You have no soul",
 					Toast.LENGTH_LONG).show();
 		} else {
 			Toast.makeText(getApplicationContext(), R.string.reg_success,
 					Toast.LENGTH_LONG).show();
-			toReturn.putExtra(SignUpActivity.BUNDLE, this.authData);
+			toReturn.putExtra(SignUpActivity.BUNDLE, res);
 		}
-		try {
-			JSONObject usr = new JSONObject(res);
-			UserCacheRegistry.set(usr, this);
-		} catch (JSONException e) {
-			Log.e("PERSISTANCE", "Could not persist shit - " + e.getMessage());
-		}
-		
+
 		this.setResult(RESULT_OK, toReturn);
 		this.finish();
 	}
