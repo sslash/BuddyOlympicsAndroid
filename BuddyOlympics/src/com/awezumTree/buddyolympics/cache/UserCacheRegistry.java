@@ -43,11 +43,15 @@ public class UserCacheRegistry {
 	
 	
 	public static User jsonToUser(JSONObject cachedData) {
+		Log.d("LOLCAT", "josnTOUSER: " + cachedData.toString());
 		Bundle configuration = new Bundle();
 		try {
 			configuration.putString(User.USERNAME, cachedData.getString(User.USERNAME));
 			configuration.putString(User.EMAIL, cachedData.getString(User.EMAIL));
 			configuration.putString(User.PASSWORD, cachedData.getString(User.PASSWORD));
+			//String newRuns = cachedData.getString(User.) 
+			
+			if ( ))
 		} catch (Exception e) {
 			Log.e("UserCacheError", "json to user: " + e.getMessage());
 		}
