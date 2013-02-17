@@ -179,7 +179,7 @@ public class RunActivity extends Activity implements AsyncTaskCallback {
 	}
 
 	private void persistRunObject() {
-		RestPostClient post = new RestPostClient("http://192.168.13.102:8080/runs");
+		RestPostClient post = new RestPostClient(this,getString(R.string.server_url) + "/runs");
 		Run r = new Run();
 		r.type = r.new Type();
 		r.participants = this.selectedItems;
