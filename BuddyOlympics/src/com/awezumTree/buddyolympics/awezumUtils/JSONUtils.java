@@ -14,12 +14,13 @@ import com.awezumTree.buddyolympics.domain.User;
 
 public class JSONUtils {
 	
-	public static JSONObject buildRunLocationUpdate(List<Location> locations, User user) throws JSONException {
+	public static JSONObject buildRunLocationUpdate(Object[] locations, User user) throws JSONException {
 		JSONObject payload = new JSONObject();
 		JSONObject participant = new JSONObject();
 		participant.put(Runner.RUNNER, user.getRunner());
 		JSONArray loc = new JSONArray();
-		for (Location l : locations) {
+		for (Object o : locations) {
+			Location l = (Location) o;
 			JSONObject point = new JSONObject();
 			point.put("longitude", l.getLongitude());
 			point.put("latitude", l.getLatitude());
