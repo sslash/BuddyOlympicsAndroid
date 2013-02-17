@@ -16,17 +16,7 @@ public class GPSServiceTest extends AndroidTestCase {
 		super.setUp();
 	}
 
-	public void testGetLongitude() {
-		GPSService service = new GPSService(context);
-		service.subscribe();
-		Assert.assertEquals(0.0, service.getLongitude());
-		service.unsuscribe();
-	}
-
-	public void testGetLatitude() {
-		GPSService service = new GPSService(context);
-		service.subscribe();
-		Assert.assertEquals(0.0, service.getLatitude());
-		service.unsuscribe();
+	public void testGPS() {
+		fail("not-yet-implemented");
 	}
 }

@@ -5,13 +5,12 @@ import junit.framework.Assert;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.junit.Before;
-import org.junit.Test;
 
 import android.test.AndroidTestCase;
 
 import com.awezumTree.buddyolympics.domain.User;
 import com.awezumTree.buddyolympics.domain.UserTest;
+import com.awezumTree.buddyolympics.schemas.RunnersSchema;
 
 public class UserCacheRegistryTest extends AndroidTestCase {
 
@@ -34,9 +33,9 @@ public class UserCacheRegistryTest extends AndroidTestCase {
 	
 	public static JSONObject createSampleJSON() throws JSONException {
 		JSONObject json = new JSONObject();
-		json.put(User.USERNAME, UserTest.username);
-		json.put(User.EMAIL, UserTest.email);
-		json.put(User.PASSWORD, UserTest.password);
+		json.put(RunnersSchema.USERNAME, UserTest.username);
+		json.put(RunnersSchema.EMAIL, UserTest.email);
+		json.put(RunnersSchema.PASSWORD, UserTest.password);
 		return json;
 	}
 
