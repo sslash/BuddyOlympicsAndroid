@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import android.util.Log;
 
 public class Run implements Serializable {
@@ -12,13 +14,16 @@ public class Run implements Serializable {
 	
 	public List <Runner> participants;
 	
-	public Date startTime;
-	
+	public Date startTime;	
 	
 	public class Type {
 		public String distance;
 		
 		public String time;
+	}
+	
+	public void setAttributesFromJSON(JSONObject data) {
+		
 	}
 	
 	public String toJsonString() {

@@ -8,6 +8,9 @@ import org.json.JSONArray;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -15,12 +18,15 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.awezumTree.buddyolympics.R;
 import com.awezumTree.buddyolympics.cache.SimpleRegistry;
 
 public class ShowRunRequests extends Activity {
 
+	 private static final int DIALOG_ALERT = 10;
+	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,20 +62,41 @@ public class ShowRunRequests extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				
-				// 1. Instantiate an AlertDialog.Builder with its constructor
-				AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-
-				// 2. Chain together various setter methods to set the dialog characteristics
-				builder.setMessage("U have brown skin color.")
-				       .setTitle("Which is niez");
-
-				// 3. Get the AlertDialog from create()
-				AlertDialog dialog = builder.create();
-				dialog.show();
+				  showDialog(DIALOG_ALERT);
 			}
 		});
 	}
+	
+	 @Override
+	  protected Dialog onCreateDialog(int id) {
+	    switch (id) {
+	    case DIALOG_ALERT:
+	      // Create out AlterDialog
+	      Builder builder = new AlertDialog.Builder(this);
+	      builder.setMessage("Do you want to join this run?");
+	      builder.setCancelable(true);
+	      builder.setPositiveButton("Yes.", new OkOnClickListener());
+	      builder.setNegativeButton("No.", new CancelOnClickListener());
+	      AlertDialog dialog = builder.create();
+	      dialog.show();
+	    }
+	    return super.onCreateDialog(id);
+	  }
+
+	  private final class CancelOnClickListener implements
+	      DialogInterface.OnClickListener {
+	    public void onClick(DialogInterface dialog, int which) {
+	      Toast.makeText(getApplicationContext(), "Activity will continue",
+	          Toast.LENGTH_LONG).show();
+	    }
+	  }
+
+	  private final class OkOnClickListener implements
+	      DialogInterface.OnClickListener {
+	    public void onClick(DialogInterface dialog, int which) {
+	    	ShowRunRequests.this.finish();
+	    }
+	  }
 
 	private HashMap<String, String> putData(String name, String purpose) {
 		HashMap<String, String> item = new HashMap<String, String>();

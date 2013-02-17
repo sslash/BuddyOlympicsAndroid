@@ -19,13 +19,16 @@ import android.view.View;
 
 import com.awezumTree.buddyolympics.R;
 import com.awezumTree.buddyolympics.cache.SimpleRegistry;
+import com.awezumTree.buddyolympics.cache.UserCacheRegistry;
 import com.awezumTree.buddyolympics.domain.Runner;
 import com.awezumTree.buddyolympics.restClient.AsyncTaskCallback;
 import com.awezumTree.buddyolympics.restClient.RestPostClient;
 
 public class HomePageActivity extends Activity implements AsyncTaskCallback{
 
+	// Just so we don't have to call the cache super often
 	private Runner loggedInUser;
+	
 	public static final String RUN_REQUESTS = "__man__bears__wantz__runs__";
 	
 	
@@ -34,7 +37,6 @@ public class HomePageActivity extends Activity implements AsyncTaskCallback{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_page);
-
 
 		this.setRunner();
 		this.getRunRequests();
@@ -46,8 +48,9 @@ public class HomePageActivity extends Activity implements AsyncTaskCallback{
 	}
 
 	private void setRunner() {
-		Intent intent = getIntent();
-		this.loggedInUser = (Runner) intent.getSerializableExtra("user");
+		//Intent intent = getIntent();
+		//this.loggedInUser = (Runner) intent.getSerializableExtra("user");
+		this.loggedInUser = UserCacheRegistry.get(this);
 	}
 
 	@Override
