@@ -22,6 +22,7 @@ import com.awezumTree.buddyolympics.cache.UserCacheRegistry;
 import com.awezumTree.buddyolympics.gps.GPSService;
 import com.awezumTree.buddyolympics.restClient.AsyncTaskCallback;
 import com.awezumTree.buddyolympics.restClient.RestPutClient;
+import com.awezumTree.buddyolympics.schemas.RunSchema;
 
 public class ActuallyRunningActivity extends Activity implements AsyncTaskCallback {
 	private final int LOCATION_POLLING_TIMEOUT = 5000;
@@ -89,7 +90,7 @@ public class ActuallyRunningActivity extends Activity implements AsyncTaskCallba
 				int length = locations.size() - 1;
 				Object[] subLocations = locations.subList(pushedLocationIndex, length).toArray();
 				pushedLocationIndex = length;
-				RestPutClient put = new RestPutClient(cb, getString(R.string.server_url)+"/runs/511fe7c45c923d508d000006");	
+				RestPutClient put = new RestPutClient(cb, getString(R.string.server_url)+"/runs/511fe7c45c923d508d000006/coords/511fa8d85805abfb89000003");	
 
 				try {
 					JSONObject json = JSONUtils.buildRunLocationUpdate(subLocations, UserCacheRegistry.get(cb));
