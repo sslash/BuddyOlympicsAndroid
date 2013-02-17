@@ -84,6 +84,11 @@ public class HomePageActivity extends Activity implements AsyncTaskCallback{
 		Intent intent = new Intent(this, AddFriendActivity.class);
 		startActivity(intent);
 	}
+	
+	public void runRoadTest(View view) {
+		Intent intent = new Intent(this, ActuallyRunningActivity.class);
+		startActivity(intent);
+	}
 
 	@Override
 	public void callback(String res) {

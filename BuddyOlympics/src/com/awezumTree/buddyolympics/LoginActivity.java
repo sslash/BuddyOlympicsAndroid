@@ -58,13 +58,6 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 		Intent intent = new Intent(this, RunActivity.class);
 		startActivity(intent);
 	}
-	
-	public void actuallyRunning(View view) {
-		Intent intent = new Intent(this, ActuallyRunningActivity.class);
-		startActivity(intent);
-	}
-	
-
 
 	public void login(View view) {
 		Intent intent = new Intent(this, AuthenticateActivity.class);
