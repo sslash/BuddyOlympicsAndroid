@@ -31,11 +31,5 @@
         android:text="RUN BIETCH"
         android:onClick="runTest" />
     
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="GPS ACID ROAD TEST"
-        android:onClick="actuallyRunning" />
-    
 
 </LinearLayout>

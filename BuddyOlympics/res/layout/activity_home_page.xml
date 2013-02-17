@@ -26,5 +26,11 @@
         android:layout_height="wrap_content"
         android:onClick="addFriends"
         android:text="Add Friends" />
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GPS ROAD TEST"
+        android:onClick="runRoadTest" />
 
 </LinearLayout>

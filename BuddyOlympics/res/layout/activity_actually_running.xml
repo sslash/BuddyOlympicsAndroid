@@ -20,5 +20,10 @@
         android:text="@string/latitude"
         android:textSize="40sp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STOP POLLING"
+        android:onClick="stopPolling" />
 
 </LinearLayout>

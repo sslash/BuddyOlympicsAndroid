@@ -6,12 +6,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.awezumTree.buddyolympics.R;
 import com.awezumTree.buddyolympics.awezumUtils.JSONUtils;
@@ -37,17 +40,17 @@ public class ActuallyRunningActivity extends Activity implements AsyncTaskCallba
 		locations = new ArrayList<Location>();
 		running = true;
 		pushedLocationIndex = 0;
+		gps = new GPSService(this);
 	}
 
 	@Override
 	protected void onStart() {
-		gps = new GPSService(this);
+		
 		gps.subscribe();
-
-		((TextView) findViewById(R.id.latitude)).setText(Double.toString(gps
-				.getLocation().getLatitude()));
-		((TextView) findViewById(R.id.latitude)).setText(Double.toString(gps
-				.getLocation().getLongitude()));
+		Log.d("ROADTEST", "subscribed to GPSService");
+		
+		Toast.makeText(getApplicationContext(), "LOL",
+				Toast.LENGTH_LONG).show();
 
 		super.onStart();
 
@@ -56,8 +59,10 @@ public class ActuallyRunningActivity extends Activity implements AsyncTaskCallba
 	}
 
 	@Override
-	protected void onStop() {
+	protected void onDestroy() {
 		gps.unsuscribe();
+		stopLocationPolling();
+		Log.d("ROADTEST", "unsubscribed from GPSService");
 		super.onStop();
 	}
 
@@ -65,6 +70,10 @@ public class ActuallyRunningActivity extends Activity implements AsyncTaskCallba
 		((TextView) findViewById(R.id.latitude)).setText(Double.toString(lat));
 		((TextView) findViewById(R.id.longitude)).setText(Double
 				.toString(longi));
+	}
+	
+	public void stopPolling(View view) {
+		stopLocationPolling();
 	}
 
 	public void stopLocationPolling() {
@@ -80,9 +89,12 @@ public class ActuallyRunningActivity extends Activity implements AsyncTaskCallba
 				int length = locations.size() - 1;
 				Object[] subLocations = locations.subList(pushedLocationIndex, length).toArray();
 				pushedLocationIndex = length;
-				RestPutClient put = new RestPutClient(cb, getString(R.string.server_url)+"/runs");	
+				RestPutClient put = new RestPutClient(cb, getString(R.string.server_url)+"/runs/511fe7c45c923d508d000006");	
+
 				try {
-					put.setJsonBody(JSONUtils.buildRunLocationUpdate(subLocations, UserCacheRegistry.get(cb)));
+					JSONObject json = JSONUtils.buildRunLocationUpdate(subLocations, UserCacheRegistry.get(cb));
+					Log.d("ROADTEST", "Poll server with - " + json);
+					put.setJsonBody(json);
 					put.execute();
 				} catch (JSONException e) {
 					Log.e("PushLoopError", "Failed to create json - " + e.getMessage());
@@ -101,6 +113,7 @@ public class ActuallyRunningActivity extends Activity implements AsyncTaskCallba
 			@Override
 			public void run() {
 				Location loc = gps.getLocation();
+				Log.d("LocationPoll", "LOCATION - "+ loc);
 				locations.add(loc);
 				if (running) {
 					runLocationPollingLoop();
@@ -111,7 +124,6 @@ public class ActuallyRunningActivity extends Activity implements AsyncTaskCallba
 
 	@Override
 	public void callback(String res) {
-		// TODO Auto-generated method stub
-		
+		Log.d("SERVER RESPONSE", res);
 	}
 }

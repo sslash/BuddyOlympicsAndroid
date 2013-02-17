@@ -88,6 +88,11 @@ public class GPSService extends Service implements LocationListener {
 	}
 
 	public Location getLocation() {
+		if (location != null) { 
+			Log.d("GPSEvent", "Queried for location. Offer - " + location.toString());
+		} else {
+			Log.e("GPSEvent", "Location == null");
+		}
 		return location;
 	}
 

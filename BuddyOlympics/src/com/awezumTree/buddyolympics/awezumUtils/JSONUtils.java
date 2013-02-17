@@ -10,6 +10,7 @@ import android.location.Location;
 
 import com.awezumTree.buddyolympics.domain.User;
 import com.awezumTree.buddyolympics.schemas.ParticipantSchema;
+import com.awezumTree.buddyolympics.schemas.RunSchema;
 import com.awezumTree.buddyolympics.schemas.WaypointsSchema;
 
 public class JSONUtils {
@@ -17,7 +18,7 @@ public class JSONUtils {
 	public static JSONObject buildRunLocationUpdate(Object[] locations, User user) throws JSONException {
 		JSONObject payload = new JSONObject();
 		JSONObject participant = new JSONObject();
-		participant.put(ParticipantSchema.RUNNER, user.getRunner());
+		participant.put(ParticipantSchema.RUNNER, "511fa8d85805abfb89000003");
 		JSONArray loc = new JSONArray();
 		for (Object o : locations) {
 			Location l = (Location) o;
@@ -27,8 +28,10 @@ public class JSONUtils {
 			point.put(WaypointsSchema.TIMESTAMP, new Date(l.getTime()));
 			loc.put(point);
 		}
-		participant.put("coordinates", loc);
-		payload.put("participant", participant);
+		participant.put(ParticipantSchema.COORDINATES, loc);
+		JSONArray participants = new JSONArray();
+		participants.put(participant);
+		payload.put(RunSchema.PARTICIPANTS, participants);
 		return payload;
 	}
 
