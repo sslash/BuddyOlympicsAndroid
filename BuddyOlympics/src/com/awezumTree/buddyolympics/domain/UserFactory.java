@@ -16,6 +16,7 @@ public class UserFactory {
 		String username = runnerData.getString(RunnersSchema.USERNAME);
 		String email = runnerData.getString(RunnersSchema.EMAIL);
 		String password = runnerData.getString(RunnersSchema.PASSWORD);
+		String id = runnerData.getString(RunnersSchema.ID);
 		String runner = runnerData.getString(ParticipantSchema.RUNNER);
 		
 		if ( username != null && !username.isEmpty() ) 
@@ -32,6 +33,10 @@ public class UserFactory {
 		if (runner != null && !runner.isEmpty()) {
 			user.setRunner(runner);
 		}
+		
+		if ( id != null && !id.isEmpty() ) 
+			user.setId(id);
+		
 		
 		user.setFriendlist(new TreeSet<Friend>());
 		
