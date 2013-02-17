@@ -50,6 +50,7 @@ public class UserCacheRegistry {
 	public static User jsonToUser(JSONObject cachedData) {
 		Bundle configuration = new Bundle();
 		try {
+			configuration.putString(RunnersSchema.ID, cachedData.getString(RunnersSchema.ID));
 			configuration.putString(RunnersSchema.USERNAME, cachedData.getString(RunnersSchema.USERNAME));
 			configuration.putString(RunnersSchema.EMAIL, cachedData.getString(RunnersSchema.EMAIL));
 			configuration.putString(RunnersSchema.PASSWORD, cachedData.getString(RunnersSchema.PASSWORD));

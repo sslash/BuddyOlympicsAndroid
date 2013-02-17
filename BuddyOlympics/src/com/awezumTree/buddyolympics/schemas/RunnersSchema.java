@@ -38,5 +38,6 @@ public class RunnersSchema {
 	public final static String ACHIEVEMENTS = "achievements";
 	public final static String RUNS = "runs";
 	public final static String NEW_RUNS = "newruns";
+	public final static String ID = "_id";
 	
 }

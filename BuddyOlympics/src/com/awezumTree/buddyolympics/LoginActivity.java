@@ -57,11 +57,6 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 		startActivityForResult(intent, SIGN_UP_ACTIVITY);
 	}
 	
-	public void runTest(View view) {
-		Intent intent = new Intent(this, RunActivity.class);
-		startActivity(intent);
-	}
-
 	public void login(View view) {
 		Intent intent = new Intent(this, AuthenticateActivity.class);
 		startActivityForResult(intent, LOGIN_ACTIVITY);
