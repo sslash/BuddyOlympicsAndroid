@@ -1,16 +1,28 @@
 package com.awezumTree.buddyolympics.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Runner implements Serializable {
 	
 	private String username;
-	private String runner;
-	
+	private String runner;	
 	private String id;
+	
+	private List <Run> newRuns;
 	
 	public Runner() {}
 	
+	public List<Run> getNewRuns() {
+		return newRuns;
+	}
+	
+	public void setNewRuns(List<Run> newRuns) {
+		this.newRuns = newRuns;
+	}
+
+
+
 	public Runner(String id) {
 		this.id = id;
 	}
@@ -33,7 +45,8 @@ public class Runner implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "username: '" + username+ "'";
+		return "Runner [username=" + username + ", runner=" + runner + ", id="
+				+ id + "]";
 	}
 
 	public String getRunner() {

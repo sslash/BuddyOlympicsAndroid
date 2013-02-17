@@ -1,5 +1,8 @@
 package com.awezumTree.buddyolympics;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -72,22 +75,39 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 			}
 		}else if(requestCode == LOGIN_ACTIVITY ) {
 			if (resultCode == RESULT_OK ) {
-				this.authenticateUserAndLogin(data.getExtras());
+				this.checkAuthenticationResAndMaybeLogin(data.getExtras());
 			}
 		}
 	}
 
-	private void authenticateUserAndLogin(Bundle extras) {
-		Bundle authData = (Bundle) extras.get(SignUpActivity.BUNDLE);
+	private void checkAuthenticationResAndMaybeLogin(Bundle extras) {
+		String authData = (String) extras.get(SignUpActivity.BUNDLE);
 		if ( authData != null ) {
-			Log.d("LOLCAT", "auth success");
-			this.user = UserFactory.createUser(authData);
-			Log.d("LOLCAT", "user: " + user.toString());
-			doLogIn();			
+			JSONObject usr = this.tryTurnAuthenticationDataIntoJSONObject(authData);
+			if ( usr != null) {
+				this.saveUserToCache(usr);
+				Log.d("LOLCAT", "auth success, which you alraeady know cause u r lol and cool");
+				Log.d("LOLCAT", "user: " + UserCacheRegistry.get(this).toString());
+				doLogIn();	
+			}		
 		} else {
-			Log.d("LOLCAT", "auth failed");
-		}
-		
+			Log.d("LOLCAT", "auth failed.. You probably already know though..");
+		}		
+	}
+	
+	private void saveUserToCache(JSONObject usr){
+		UserCacheRegistry.set(usr, this);
+	}
+
+	private JSONObject tryTurnAuthenticationDataIntoJSONObject(String authData) {
+		try {
+			JSONObject userAsJSON = new JSONObject(authData);
+			Log.d("LOLCAT", "JSON str is now: " + authData.toString());
+			return userAsJSON;
+		} catch (JSONException e) {
+			Log.e("LOLCAT","tryTurnAuthenticationDataIntoJSONObject() - " + e.getMessage());
+			return null;
+		}		
 	}
 
 	private void saveRunnerAndLogin(Bundle runnerData) {
@@ -121,6 +141,7 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 			Toast.makeText(getApplicationContext(),
 					R.string.reg_success, Toast.LENGTH_LONG).show();
 			if ( user != null ){
+				UserCacheRegistry.set(user, this);
 				doLogIn();
 			}else {
 				Log.e("LOLCAT", "USER WAS NULL BIETCH");
@@ -132,9 +153,9 @@ public class LoginActivity extends Activity implements AsyncTaskCallback{
 	}
 
 	private void doLogIn() {
-		Log.d("LOL", "Will log in user! " + user.toString());
+		//Log.d("LOL", "Will log in user! " + user.toString());
 		Intent intent = new Intent(this, HomePageActivity.class);
-	    intent.putExtra("user", user);
+	    //intent.putExtra("user", user);
 	    startActivity(intent);
 	}
 }
